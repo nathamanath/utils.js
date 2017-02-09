@@ -71,8 +71,10 @@ export const throttle = function(callback, threshhold=300, trail=false, scope=th
   }
 }
 
+// TODO: deep merge
+
 /**
- * Merge object a into object b
+ * (shallow) merge object a into object b
  *
  * @param {Object} a
  * @param {Object} b
@@ -96,11 +98,12 @@ export const merge = function(a, b) {
  * @example `curry.apply(global, [tester, 11])`
  */
 export const curry = function(fn) {
-  let args = Array.prototype.slice.call(arguments, 1)
+  let slice = Array.prototype.slice
+  let args = slice.call(arguments, 1)
 
   return function() {
     return fn.apply(this, args.concat(
-      Array.prototype.slice.call(arguments, 0)
+      slice.call(arguments, 0) // convert arguments into array
     ))
   }
 }
