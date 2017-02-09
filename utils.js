@@ -14,7 +14,7 @@ export const dg = (id) => {
  * querySelector
  *
  * @param {String} selector - css selector
- * @param {Context} [scope=document] - context in which to select node from
+ * @param {Object} [scope=document] - context in which to select node from
  */
  export const $ = (selector, scope=document) => {
    return scope.querySelector(selector)
@@ -24,8 +24,8 @@ export const dg = (id) => {
  * querySelectorAll
  *
  * @param {String} selector - css selector string
- * @param {Context} [scope=document] - context in which to select nodes from
- * @returns {Array} matching nodes
+ * @param {Object} [scope=document] - context in which to select nodes from
+ * @returns {Array.<Object>} matching nodes
  */
 export const $$ = (selector, scope=document) => {
   return Array.prototype.slice.call(scope.querySelectorAll(selector));
@@ -42,7 +42,7 @@ export const noop = function() {}
  * @param {Function} callback - function to be throttled
  * @param {Number} [threshhold=300] - min time in ms between calls to fn
  * @param {Boolean} [trail=false] - fire callback at end of last timeout
- * @param {Context} [scope=this] - scope in which fn is executed
+ * @param {Object} [scope=this] - scope in which fn is executed
  * @returns {Function} throttled version of function
  */
 export const throttle = function(callback, threshhold=300, trail=false, scope=this) {
