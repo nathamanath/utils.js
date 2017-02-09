@@ -4,6 +4,7 @@
 
 /**
  * document.getElementById
+ * 
  * @param {String} id - dom node id
  */
 export const dg = (id) => {
