@@ -22,6 +22,9 @@ describe('Utils', function() {
 
     it('gets element by id', () => {
       assert(Utils.dg('tester'))
+    })
+
+    it('returns null if not found', function() {
       assert(!Utils.dg('not_there'))
     })
 
@@ -41,6 +44,9 @@ describe('Utils', function() {
 
     it('gets element by query string', () => {
       assert(Utils.$('#tester'))
+    })
+
+    it('returns null if not found', function() {
       assert(!Utils.$('#not_there'))
     })
 
@@ -58,11 +64,12 @@ describe('Utils', function() {
       jsdomify.destroy()
     })
 
-    it('gets array of elements by query string', () => {
-      let subject = Utils.$$('.tester')
+    it('gets elements by query string', () => {
+      assert.equal(Utils.$$('.tester').length, 3)
+    })
 
-      assert.equal(subject.length, 3)
-      assert.equal(Array, subject.constructor)
+    it('returns matches as an Array', function() {
+      assert.equal(Array, Utils.$$('.tester').constructor)
     })
 
     it('returns empty array if no matches', () => {
@@ -82,7 +89,6 @@ describe('Utils', function() {
 
       assert.equal(curried('bhuna'), 'lamb bhuna')
     })
-
   })
 
   describe('#merge', () => {

@@ -1,5 +1,8 @@
 /**
- * General pourpose utility functions
+ * Utils - General pourpose utility functions for frontend js projects
+ *
+ * @author NathanG
+ * @license MIT
  */
 
 /**
@@ -44,6 +47,7 @@ export const noop = function() {}
  * @param {Number} [threshhold=300] - min time in ms between calls to fn
  * @param {Boolean} [trail=false] - fire callback at end of last timeout
  * @param {Object} [scope=this] - scope in which fn is executed
+ *
  * @returns {Function} throttled version of function
  */
 export const throttle = function(callback, threshhold=300, trail=false, scope=this) {
@@ -53,6 +57,7 @@ export const throttle = function(callback, threshhold=300, trail=false, scope=th
   let offset = (trail === false) ? 0 : threshhold
 
   return function() {
+
     let now = (new Date()).getTime()
     let elapsed = (now - last - offset)
     let args = arguments
@@ -64,11 +69,14 @@ export const throttle = function(callback, threshhold=300, trail=false, scope=th
       callback.apply(scope, args)
     }
 
+    // Allow first call immediately after throttling function.
+    // All later calls must be `threshhold` ms appart
     if(!last || elapsed > threshhold) {
       exec()
     } else if(!deferTimer && trail !== false) {
       deferTimer = setTimeout(exec, threshhold)
     }
+
   }
 }
 
@@ -92,11 +100,12 @@ export const merge = function(a, b) {
   return out
 }
 
+// TODO: set context for curried function?
+
 /**
  * Curry up a function
  *
  * @param {Function} fn - Function to be curried
- * @example `curry.apply(global, [tester, 11])`
  */
 export const curry = function(fn) {
   let slice = Array.prototype.slice
