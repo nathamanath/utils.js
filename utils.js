@@ -4,7 +4,7 @@
 
 /**
  * document.getElementById
- * 
+ *
  * @param {String} id - dom node id
  */
 export const dg = (id) => {
@@ -64,7 +64,7 @@ export const throttle = function(callback, threshhold=300, trail=false, scope=th
       callback.apply(scope, args)
     }
 
-    if(!last || elapsed >= threshhold) {
+    if(!last || elapsed > threshhold) {
       exec()
     } else if(!deferTimer && trail !== false) {
       deferTimer = setTimeout(exec, threshhold)

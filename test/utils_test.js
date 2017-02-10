@@ -74,13 +74,13 @@ describe('Utils', function() {
   describe('#curry', () => {
 
     it('returns a curried function', () => {
-      let tester = function(a, b, c) {
-        return a + b + c
+      let tester = function(a, b) {
+        return a + ' ' + b
       }
 
-      let curried = Utils.curry(tester, 11)
+      let curried = Utils.curry(tester, 'lamb')
 
-      assert.equal(curried(1, 2), 14)
+      assert.equal(curried('bhuna'), 'lamb bhuna')
     })
 
   })
@@ -109,27 +109,17 @@ describe('Utils', function() {
 
   describe('#throttle', () => {
 
-    it('limits function calls over time', (done) => {
+    it('limits function calls over time', () => {
 
       let tester = spy()
-      let throttled = Utils.throttle(tester, 10, false)
+      let throttled = Utils.throttle(tester, 100, false)
 
       throttled()
       throttled()
       throttled()
 
-      setTimeout(() => {
+      assert.equal(tester.callCount, 1)
 
-        assert.equal(1, tester.callCount)
-
-        setTimeout(() => {
-
-          throttled()
-          assert.equal(2, tester.callCount)
-          done()
-
-        }, 11)
-      }, 11)
     })
 
     // it('sets a threshold')
@@ -145,7 +135,7 @@ describe('Utils', function() {
 
       setTimeout(() => {
 
-        assert.equal(1, tester.callCount)
+        assert.equal(tester.callCount, 1)
         done()
 
       }, 11)
