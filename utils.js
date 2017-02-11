@@ -62,7 +62,7 @@ export const throttle = function(callback, threshhold=300, trail=false, scope=th
     let elapsed = (now - last - offset)
     let args = arguments
 
-    let exec = function() {
+    let fn = function() {
       deferTimer = clearTimeout(deferTimer)
       last = now
 
@@ -70,11 +70,11 @@ export const throttle = function(callback, threshhold=300, trail=false, scope=th
     }
 
     // Allow first call immediately after throttling function.
-    // All later calls must be `threshhold` ms appart
-    if(!last || elapsed > threshhold) {
-      exec()
+    // All later calls will be >= `threshhold` ms appart
+    if(!last || elapsed >= threshhold) {
+      fn()
     } else if(!deferTimer && trail !== false) {
-      deferTimer = setTimeout(exec, threshhold)
+      deferTimer = setTimeout(fn, threshhold)
     }
 
   }
@@ -116,4 +116,20 @@ export const curry = function(fn) {
       slice.call(arguments, 0) // convert arguments into array
     ))
   }
+}
+
+/**
+ * Scale a number from poition in origional range to position in another
+ *
+ * @param {Number} value - number to be scaled
+ * @param {Number} srcMin - Min bound of input value
+ * @param {Number} srcMin - Max bound of input value
+ * @param {Number} destMin - Min bound of scaled value
+ * @param {Number} destMax - Max bound of scaled value
+ *
+ * @returns {Number} value scaled into rangeTo
+ */
+export const scale = function(value, srcMin, srcMax, destMin, destMax) {
+  let preMapped = (value - srcMin) / (srcMax - srcMin)
+  return preMapped * (destMax - destMin) + destMin
 }
