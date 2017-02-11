@@ -129,7 +129,7 @@ export const curry = function(fn) {
  *
  * @returns {Number} value scaled into rangeTo
  */
-export const scale = function(value, srcMin, srcMax, destMin, destMax) {
+export const scale = function(srcMin, srcMax, destMin, destMax, value) {
   let preMapped = (value - srcMin) / (srcMax - srcMin)
   return preMapped * (destMax - destMin) + destMin
 }

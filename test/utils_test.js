@@ -116,11 +116,11 @@ describe('Utils', function() {
   describe('#scale', function() {
 
     it('Scales a number up', function() {
-      assert.equal(10, Utils.scale(1, 0, 10, 0, 100))
+      assert.equal(10, Utils.scale(0, 10, 0, 100, 1))
     })
 
     it('Scales a number down', function() {
-      assert.equal(0.1, Utils.scale(1, 0, 10, 0, 1))
+      assert.equal(0.1, Utils.scale(0, 10, 0, 1, 1))
     })
 
   })
