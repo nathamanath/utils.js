@@ -140,8 +140,40 @@ describe('Utils', function() {
 
     })
 
-    // it('sets a threshold')
-    // it('sets a scope')
+    it('sets a threshold', function(done) {
+
+      let tester = spy()
+      let throttled = Utils.throttle(tester, 35, false)
+
+      throttled()
+
+      global.setTimeout(function() {
+        throttled()
+
+        global.setTimeout(function() {
+          throttled()
+
+          assert.equal(tester.callCount, 2)
+          done()
+
+        }, 20)
+      }, 20)
+    })
+
+    it('sets a scope for callback execution', function() {
+      let context = new function() {
+        this.number = 11
+      }
+
+      let tester = function() {
+        return this.number
+      }
+
+      let throttled = Utils.throttle(tester, 100, false, context)
+
+      // assert.equal(tester.apply(context), 11) // <-- would pass
+      assert.equal(throttled(), 11)
+    })
 
     it('dosent make trailing calls', (done) => {
       let tester = spy()

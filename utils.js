@@ -67,13 +67,13 @@ export const throttle = function(callback, threshhold=300, trail=false, scope=th
       deferTimer = clearTimeout(deferTimer)
       last = now
 
-      callback.apply(scope, args)
+      return callback.apply(scope, args)
     }
 
     // Allow first call immediately after throttling function.
     // All later calls will be >= `threshhold` ms appart
     if(!last || elapsed >= threshhold) {
-      fn()
+      return fn()
     } else if(!deferTimer && trail !== false) {
       deferTimer = setTimeout(fn, threshhold)
     }
