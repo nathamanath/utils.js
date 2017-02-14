@@ -165,14 +165,19 @@ describe('Utils', function() {
         this.number = 11
       }
 
-      let tester = function() {
-        return this.number
+      let thing = {
+        out: 0
+      }
+
+      let tester = function(bla) {
+        bla.out = this.number
       }
 
       let throttled = Utils.throttle(tester, 100, false, context)
 
-      // assert.equal(tester.apply(context), 11) // <-- would pass
-      assert.equal(throttled(), 11)
+      throttled(thing)
+
+      assert.equal(thing.out, 11)
     })
 
     it('dosent make trailing calls', (done) => {
