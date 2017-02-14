@@ -106,6 +106,9 @@ export const merge = function(a, b) {
  * Curry up a function
  *
  * @param {Function} fn - Function to be curried
+ * @param {...*} arguments - remaining arguments are curried into `fn`
+ *
+ * @returns {Function} - fn curried with `arguments` 1+
  */
 export const curry = function(fn) {
   let slice = Array.prototype.slice
