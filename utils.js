@@ -9,6 +9,7 @@
  * document.getElementById
  *
  * @param {String} id - dom node id
+ * @returns {Object}
  */
 export const dg = (id) => {
   return document.getElementById(id)
@@ -19,6 +20,7 @@ export const dg = (id) => {
  *
  * @param {String} selector - css selector
  * @param {Object} [scope=document] - context in which to select node from
+ * @returns {Object}
  */
  export const $ = (selector, scope=document) => {
    return scope.querySelector(selector)
@@ -47,7 +49,6 @@ export const noop = function() {}
  * @param {Number} [threshhold=300] - min time in ms between calls to fn
  * @param {Boolean} [trail=false] - fire callback at end of last timeout
  * @param {Object} [scope=this] - scope in which fn is executed
- *
  * @returns {Function} throttled version of function
  */
 export const throttle = function(callback, threshhold=300, trail=false, scope=this) {
@@ -107,7 +108,6 @@ export const merge = function(a, b) {
  *
  * @param {Function} fn - Function to be curried
  * @param {...*} arguments - remaining arguments are curried into `fn`
- *
  * @returns {Function} - fn curried with `arguments` 1+
  */
 export const curry = function(fn) {
@@ -129,7 +129,6 @@ export const curry = function(fn) {
  * @param {Number} srcMin - Max bound of input value
  * @param {Number} destMin - Min bound of scaled value
  * @param {Number} destMax - Max bound of scaled value
- *
  * @returns {Number} value scaled into rangeTo
  */
 export const scale = function(srcMin, srcMax, destMin, destMax, value) {
