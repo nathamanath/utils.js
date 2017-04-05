@@ -8,14 +8,14 @@ I use in almost any front end javascript project.
 Install it for your project via npm:
 
 ```sh
-  npm i -S git+https://git@github.com/nathamanath/utils.js.git
+  npm i -S git+https://git@github.com/nathamanath/utils_js.git
 ```
 
 Then import it:
 
 ```js
   //es6
-  import {$} from 'utils'
+  import {$} from 'utils_js'
   let el = $('some_id')
   ...
 ```
