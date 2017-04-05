@@ -3,6 +3,7 @@
  *
  * @author NathanG
  * @license MIT
+ * @module Utils
  */
 
 /**
@@ -11,7 +12,7 @@
  * @param {String} id - dom node id
  * @returns {Object}
  */
-export const dg = (id) => {
+export function dg(id) {
   return document.getElementById(id)
 }
 
@@ -22,7 +23,7 @@ export const dg = (id) => {
  * @param {Object} [scope=document] - context in which to select node from
  * @returns {Object}
  */
- export const $ = (selector, scope=document) => {
+ export function $(selector, scope=document) {
    return scope.querySelector(selector)
  }
 
@@ -33,7 +34,7 @@ export const dg = (id) => {
  * @param {Object} [scope=document] - context in which to select nodes from
  * @returns {Array.<Object>} matching nodes
  */
-export const $$ = (selector, scope=document) => {
+export function $$(selector, scope=document) {
   return Array.prototype.slice.call(scope.querySelectorAll(selector));
 }
 
@@ -51,7 +52,7 @@ export const noop = function() {}
  * @param {Object} [scope=this] - scope in which fn is executed
  * @returns {Function} throttled version of function
  */
-export const throttle = function(callback, threshhold=300, trail=false, scope=this) {
+export function throttle(callback, threshhold=300, trail=false, scope=this) {
 
   let last
   let deferTimer
@@ -90,7 +91,7 @@ export const throttle = function(callback, threshhold=300, trail=false, scope=th
  * @param {Object} b
  * @returns {Object} - a merged into b
  */
-export const merge = function(a, b) {
+export function merge(a, b) {
   let out = {}
   let getKeys = Object.keys
 
@@ -108,9 +109,9 @@ export const merge = function(a, b) {
  *
  * @param {Function} fn - Function to be curried
  * @param {...*} arguments - remaining arguments are curried into `fn`
- * @returns {Function} - fn curried with `arguments` 1+
+ * @returns {Function} fn curried with `arguments` 1+
  */
-export const curry = function(fn) {
+export function curry(fn) {
   let slice = Array.prototype.slice
   let args = slice.call(arguments, 1)
 
@@ -129,9 +130,9 @@ export const curry = function(fn) {
  * @param {Number} srcMin - Max bound of input value
  * @param {Number} destMin - Min bound of scaled value
  * @param {Number} destMax - Max bound of scaled value
- * @returns {Number} value scaled into rangeTo
+ * @returns {Number} value scaled between `destMin` and `destMax`
  */
-export const scale = function(srcMin, srcMax, destMin, destMax, value) {
+export function scale(srcMin, srcMax, destMin, destMax, value) {
   let preMapped = (value - srcMin) / (srcMax - srcMin)
   return preMapped * (destMax - destMin) + destMin
 }

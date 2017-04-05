@@ -2,18 +2,23 @@
   "name": "utils_js",
   "version": "0.1.0",
   "description": "functional front end utilitys lib",
-  "main": "utils.js",
+  "main": "./lib/utils.js",
   "scripts": {
+    "build": "$(npm bin)/babel src -d lib",
+    "docs": "$(npm bin)/jsdoc src/utils.js",
     "test": "$(npm bin)/mocha --compilers js:babel-core/register --recursive --reporter nyan ./test"
   },
   "author": "",
   "license": "MIT",
   "devDependencies": {
-    "babel-core": "^6.22.1",
+    "babel-cli": "^6.24.0",
     "babel-polyfill": "^6.22.0",
-    "babel-preset-es2015": "^6.22.0",
+    "babel-preset-es2015": "^6.24.0",
     "jsdomify": "^3.1.0",
     "mocha": "^3.2.0",
     "sinon": "^1.17.7"
+  },
+  "dependencies": {
+    "jsdoc": "^3.4.3"
   }
 }
